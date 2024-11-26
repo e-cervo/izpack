@@ -38,8 +38,9 @@ public abstract class AbstractTestInstallationContainer extends AbstractContaine
     protected Class<?> klass;
     protected FrameworkMethod frameworkMethod;
 
-    public AbstractTestInstallationContainer(Class<?> klass, FrameworkMethod frameworkMethod)
+    public AbstractTestInstallationContainer(Class<?> klass, FrameworkMethod frameworkMethod, boolean fillContainer)
     {
+        super(fillContainer);
         this.klass = klass;
         this.frameworkMethod = frameworkMethod;
     }

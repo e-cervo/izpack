@@ -55,7 +55,11 @@ public abstract class AbstractContainer implements Container {
      * The container must be initialised via {@link #initialise()} before use.
      */
     public AbstractContainer() {
-        this(null);
+        this(null, true);
+    }
+
+    public AbstractContainer(boolean fillContainer) {
+        this(null, fillContainer);
     }
 
     /**
@@ -67,9 +71,11 @@ public abstract class AbstractContainer implements Container {
      * @param parent the underlying container. May be <tt>null</tt>
      * @throws ContainerException if initialisation fails
      */
-    private AbstractContainer(Injector parent) {
+    private AbstractContainer(Injector parent, boolean fillContainer) {
         this.parent = parent;
-        initialise();
+        if (fillContainer) {
+            initialise();
+        }
     }
 
     /**
@@ -80,8 +86,7 @@ public abstract class AbstractContainer implements Container {
      */
     @Override
     public <T> void addComponent(Class<T> componentType) {
-        addModule(componentType, binder -> {
-        });
+        addModule(componentType, binder -> binder.in(Scopes.SINGLETON));
     }
 
     @Override
@@ -91,7 +96,7 @@ public abstract class AbstractContainer implements Container {
 
     @Override
     public <T, U extends T> void addProvider(Class<T> type, Class<? extends Provider<U>> provider) {
-        addModule(type, binder -> binder.toProvider(provider));
+        addModule(type, binder -> binder.toProvider(provider).in(Scopes.SINGLETON));
     }
 
     @Override
@@ -127,12 +132,13 @@ public abstract class AbstractContainer implements Container {
     public <T, U extends T> void addComponent(String componentKey, Class<T> type, Class<U> implementation) {
         addModule(type, binder -> binder
                 .annotatedWith(Names.named(componentKey))
-                .to(implementation));
+                .to(implementation)
+                .in(Scopes.SINGLETON));
     }
 
     private <T> void addModule(Class<T> componentKey, Consumer<AnnotatedBindingBuilder<T>> mapper) {
         if (this.injector != null) {
-            throw new IllegalStateException("Cannot add components after container has been initialized");
+            throw new IllegalStateException("Cannot add " + componentKey.getSimpleName() + " after container has been initialized");
         }
         this.modules.add(new SimpleModule<T>(componentKey, mapper));
     }
@@ -140,7 +146,7 @@ public abstract class AbstractContainer implements Container {
     @Override
     public <T> void removeComponent(Class<T> componentType) {
         if (this.injector != null) {
-            throw new IllegalStateException("Cannot remove components after container has been initialized");
+            throw new IllegalStateException("Cannot remove component " + componentType.getSimpleName() + " after container has been initialized");
         }
         this.modules.removeIf(module -> module.componentKey.equals(componentType));
     }
@@ -220,6 +226,7 @@ public abstract class AbstractContainer implements Container {
      */
     @Override
     public void dispose() {
+        modules.clear();
         injector = null;
     }
 
@@ -296,7 +303,7 @@ public abstract class AbstractContainer implements Container {
          * @param parent the parent container
          */
         public ChildContainer(Injector parent) {
-            super(parent);
+            super(parent, true);
         }
     }
 

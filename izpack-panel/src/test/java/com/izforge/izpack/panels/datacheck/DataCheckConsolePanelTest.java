@@ -23,6 +23,7 @@ package com.izforge.izpack.panels.datacheck;
 import com.google.inject.Inject;
 import com.izforge.izpack.api.data.InstallData;
 import com.izforge.izpack.api.data.Pack;
+import com.izforge.izpack.api.rules.RulesEngine;
 import com.izforge.izpack.installer.console.ConsolePanel;
 import com.izforge.izpack.installer.data.ConsoleInstallData;
 import com.izforge.izpack.installer.panel.PanelView;
@@ -66,7 +67,7 @@ public class DataCheckConsolePanelTest
      * @param console     the console
      */
     @Inject
-    public DataCheckConsolePanelTest(InstallData installData, TestConsole console)
+    public DataCheckConsolePanelTest(InstallData installData, TestConsole console, RulesEngine rules)
     {
         this.console = console;
         this.installData = installData;

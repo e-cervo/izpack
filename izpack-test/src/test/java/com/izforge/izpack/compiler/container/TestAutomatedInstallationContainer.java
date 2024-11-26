@@ -11,7 +11,7 @@ public class TestAutomatedInstallationContainer extends AbstractTestInstallation
 {
     public TestAutomatedInstallationContainer(Class<?> klass, FrameworkMethod frameworkMethod)
     {
-        super(klass, frameworkMethod);
+        super(klass, frameworkMethod, false);
         initialise();
     }
 

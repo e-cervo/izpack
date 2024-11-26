@@ -22,6 +22,7 @@ package com.izforge.izpack.panels.test;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import com.izforge.izpack.api.data.AutomatedInstallData;
 import com.izforge.izpack.api.data.ConsolePrefs;
 import com.izforge.izpack.api.data.InstallData;
 import com.izforge.izpack.api.exception.ContainerException;
@@ -58,6 +59,7 @@ public class TestConsolePanelContainer extends AbstractTestPanelContainer {
         addProvider(Messages.class, MessagesProvider.class);
         addProvider(ConsoleInstallData.class, ConsoleInstallDataMockProvider.class);
         addProvider(InstallData.class, ConsoleInstallDataMockProvider.class);
+        addProvider(AutomatedInstallData.class, ConsoleInstallDataMockProvider.class);
         addProvider(ConsolePrefs.class, ConsolePrefsProvider.class);
         addComponent(Console.class, TestConsole.class);
         addComponent(Prompt.class, ConsolePrompt.class);

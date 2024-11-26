@@ -28,6 +28,7 @@ import static org.mockito.Mockito.mock;
 import java.util.Arrays;
 
 import com.google.inject.Inject;
+import com.izforge.izpack.api.rules.RulesEngine;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -93,7 +94,7 @@ public class UserInputConsolePanelTest
      */
     @Inject
     public UserInputConsolePanelTest(InstallData installData, ObjectFactory factory, ResourceManager resources,
-                                     TestConsole console, TestConsolePanelContainer container)
+                                     TestConsole console, TestConsolePanelContainer container, RulesEngine rules)
     {
         this.installData = installData;
         this.factory = factory;

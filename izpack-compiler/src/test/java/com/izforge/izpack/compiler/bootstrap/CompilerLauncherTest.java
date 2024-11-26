@@ -19,11 +19,11 @@
 
 package com.izforge.izpack.compiler.bootstrap;
 
+import com.google.inject.Inject;
 import com.izforge.izpack.compiler.Compiler;
 import com.izforge.izpack.compiler.CompilerConfig;
 import com.izforge.izpack.compiler.container.CompilerContainer;
 import com.izforge.izpack.compiler.data.CompilerData;
-import com.izforge.izpack.compiler.logging.MavenStyleLogFormatter;
 import com.izforge.izpack.compiler.packager.impl.AbstractPackagerTest;
 import com.izforge.izpack.test.Container;
 import com.izforge.izpack.test.junit.GuiceRunner;
@@ -33,9 +33,6 @@ import org.junit.runner.RunWith;
 
 import java.util.Properties;
 import java.util.jar.JarOutputStream;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Handler;
-import java.util.logging.Level;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -45,20 +42,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @author Anthonin Bonnefoy
  */
 @RunWith(GuiceRunner.class)
-@Container(CompilerContainer.class)
+@Container(TestCompilerLauncherContainer.class)
 public class CompilerLauncherTest
 {
     private final CompilerContainer compilerContainer;
 
+    @Inject
     public CompilerLauncherTest(CompilerContainer compilerContainer)
     {
-        final ConsoleHandler consoleHandler = new ConsoleHandler();
-        consoleHandler.setLevel(Level.INFO);
-        consoleHandler.setFormatter(new MavenStyleLogFormatter());
-        compilerContainer.addComponent(Handler.class, consoleHandler);
-
         this.compilerContainer = compilerContainer;
-
     }
 
     @Test

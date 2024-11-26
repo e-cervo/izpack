@@ -28,6 +28,7 @@ import java.util.jar.JarFile;
 
 import static org.junit.Assert.*;
 
+import com.google.inject.Inject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,6 +54,7 @@ public class DynVariableOrderTest
 
     List<String> orderedVarnames;
 
+    @Inject
     public DynVariableOrderTest(TestCompilerContainer container, CompilerConfig compilerConfig)
     {
         this.testContainer = container;

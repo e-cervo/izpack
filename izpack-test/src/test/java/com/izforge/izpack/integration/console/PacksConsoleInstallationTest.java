@@ -21,6 +21,7 @@
 
 package com.izforge.izpack.integration.console;
 
+import com.google.inject.Inject;
 import com.izforge.izpack.api.data.AutomatedInstallData;
 import com.izforge.izpack.api.data.InstallData;
 import com.izforge.izpack.compiler.container.TestConsoleInstallationContainer;
@@ -61,6 +62,7 @@ public class PacksConsoleInstallationTest extends AbstractConsoleInstallationTes
      * @param installData the installation data
      * @throws Exception for any error
      */
+    @Inject
     public PacksConsoleInstallationTest(TestConsoleInstaller installer, AutomatedInstallData installData) throws Exception
     {
         super(installData);

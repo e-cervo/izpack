@@ -24,6 +24,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import java.util.jar.JarFile;
 import java.util.zip.ZipFile;
 
+import com.google.inject.Inject;
 import org.hamcrest.core.IsCollectionContaining;
 import org.hamcrest.core.IsNot;
 import org.junit.Test;
@@ -47,6 +48,7 @@ public class CompilerConfigSamplesTest
     private CompilerConfig compilerConfig;
     private AbstractContainer testContainer;
 
+    @Inject
     public CompilerConfigSamplesTest(TestCompilerContainer container, CompilerConfig compilerConfig)
     {
         this.testContainer = container;

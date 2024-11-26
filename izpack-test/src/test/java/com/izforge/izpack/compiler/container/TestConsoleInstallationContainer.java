@@ -13,7 +13,7 @@ public class TestConsoleInstallationContainer extends AbstractTestInstallationCo
 {
     public TestConsoleInstallationContainer(Class<?> klass, FrameworkMethod frameworkMethod)
     {
-        super(klass, frameworkMethod);
+        super(klass, frameworkMethod, false);
         initialise();
     }
 

@@ -27,6 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.jar.JarFile;
 
+import com.google.inject.Inject;
 import org.apache.maven.shared.jar.JarAnalyzer;
 import org.apache.maven.shared.jar.classes.JarClasses;
 import org.apache.maven.shared.jar.classes.JarClassesAnalysis;
@@ -59,6 +60,7 @@ public class CompilerConfigTest
     private MergeManagerImpl mergeManager;
     private AbstractContainer testContainer;
 
+    @Inject
     public CompilerConfigTest(TestCompilerContainer container, CompilerConfig compilerConfig,
                               CompilerPathResolver pathResolver, MergeManagerImpl mergeManager)
     {
