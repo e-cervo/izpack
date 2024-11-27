@@ -29,20 +29,22 @@
 
   <distributionManagement>
     <repository>
-      <id>artifact-registry</id>
-      <url>https://europe-maven.pkg.dev/cervoprint-dev/releases</url>
+      <id>github</id>
+      <name>GitHub e-cervo Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/e-cervo/izpack</url>
     </repository>
   </distributionManagement>
 
   <repositories>
     <repository>
-      <id>artifact-registry</id>
-      <url>https://europe-maven.pkg.dev/cervoprint-dev/releases</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
+      <id>central</id>
+      <url>https://repo1.maven.org/maven2</url>
+    </repository>
+    <repository>
+      <id>github</id>
+      <url>https://maven.pkg.github.com/e-cervo/izpack</url>
       <snapshots>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
       </snapshots>
     </repository>
   </repositories>
