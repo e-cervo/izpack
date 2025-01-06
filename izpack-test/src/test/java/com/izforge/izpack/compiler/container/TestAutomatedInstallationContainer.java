@@ -15,7 +15,6 @@ public class TestAutomatedInstallationContainer extends AbstractTestInstallation
         initialise();
     }
 
-
     @Override
     protected InstallerContainer fillInstallerContainer()
     {

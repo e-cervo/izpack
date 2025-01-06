@@ -29,12 +29,15 @@ import com.izforge.izpack.api.handler.Prompt;
 import com.izforge.izpack.core.handler.AutomatedPrompt;
 import com.izforge.izpack.installer.automation.AutomatedInstaller;
 import com.izforge.izpack.installer.automation.AutomatedPanels;
+import com.izforge.izpack.installer.automation.PanelAutomationHelper;
 import com.izforge.izpack.installer.console.ConsolePanelAutomationHelper;
 import com.izforge.izpack.installer.container.provider.AutomatedInstallDataProvider;
 import com.izforge.izpack.installer.container.provider.AutomatedPanelsProvider;
+import com.izforge.izpack.installer.data.ConsoleInstallData;
 import com.izforge.izpack.installer.multiunpacker.MultiVolumeUnpackerAutomationHelper;
 import com.izforge.izpack.installer.panel.Panels;
 import com.izforge.izpack.installer.unpacker.ConsolePackResources;
+import com.izforge.izpack.installer.unpacker.PackResources;
 
 /**
  * Installer container for automated installation mode.
@@ -42,15 +45,6 @@ import com.izforge.izpack.installer.unpacker.ConsolePackResources;
  * @author Tim Anderson
  */
 public class AutomatedInstallerContainer extends InstallerContainer {
-
-    /**
-     * Constructs a <tt>AutomatedInstallerContainer</tt>.
-     *
-     * @throws ContainerException if initialisation fails
-     */
-    public AutomatedInstallerContainer() {
-        initialise();
-    }
 
     /**
      * Registers components with the container.
@@ -61,12 +55,12 @@ public class AutomatedInstallerContainer extends InstallerContainer {
 
         addProvider(InstallData.class, AutomatedInstallDataProvider.class);
         addProvider(AutomatedInstallData.class, AutomatedInstallDataProvider.class);
-        addProvider(Panels.class, AutomatedPanelsProvider.class);
+        addProvider(AutomatedPanels.class, AutomatedPanelsProvider.class);
 
         addComponent(Prompt.class, AutomatedPrompt.class);
         addComponent(AutomatedInstaller.class);
-        addComponent(ConsolePanelAutomationHelper.class);
-        addComponent(ConsolePackResources.class);
+        addComponent(PanelAutomationHelper.class, ConsolePanelAutomationHelper.class);
+        addComponent(PackResources.class, ConsolePackResources.class);
         addComponent(MultiVolumeUnpackerAutomationHelper.class);
     }
 }

@@ -21,11 +21,11 @@ package com.izforge.izpack.compiler.container;
 
 import java.util.jar.JarFile;
 
+import com.izforge.izpack.installer.container.impl.InstallerContainer;
 import org.junit.runners.model.FrameworkMethod;
 
 import com.izforge.izpack.compiler.data.CompilerData;
 import com.izforge.izpack.core.container.AbstractContainer;
-import com.izforge.izpack.installer.container.impl.InstallerContainer;
 
 /**
  * Abstract implementation of a container for testing purposes.
@@ -57,7 +57,7 @@ public abstract class AbstractTestInstallationContainer extends AbstractContaine
         addComponent(data);
         addComponent(installer);
 
-        fillInstallerContainer();
+        addModules(fillInstallerContainer().getModules());
     }
 
     protected abstract InstallerContainer fillInstallerContainer();

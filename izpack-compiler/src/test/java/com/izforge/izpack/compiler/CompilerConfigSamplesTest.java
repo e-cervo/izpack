@@ -33,7 +33,7 @@ import org.junit.runner.RunWith;
 import com.izforge.izpack.compiler.container.TestCompilerContainer;
 import com.izforge.izpack.core.container.AbstractContainer;
 import com.izforge.izpack.matcher.ZipMatcher;
-import com.izforge.izpack.test.Container;
+import com.izforge.izpack.test.ContainerImport;
 import com.izforge.izpack.test.InstallFile;
 import com.izforge.izpack.test.junit.GuiceRunner;
 
@@ -41,7 +41,7 @@ import com.izforge.izpack.test.junit.GuiceRunner;
  * Test for an Izpack compilation
  */
 @RunWith(GuiceRunner.class)
-@Container(TestCompilerContainer.class)
+@ContainerImport(TestCompilerContainer.class)
 public class CompilerConfigSamplesTest
 {
     private JarFile jar;

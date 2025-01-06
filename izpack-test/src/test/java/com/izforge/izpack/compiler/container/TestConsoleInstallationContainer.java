@@ -17,7 +17,6 @@ public class TestConsoleInstallationContainer extends AbstractTestInstallationCo
         initialise();
     }
 
-
     @Override
     protected InstallerContainer fillInstallerContainer()
     {
