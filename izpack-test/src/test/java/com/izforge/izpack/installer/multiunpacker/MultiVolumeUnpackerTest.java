@@ -36,7 +36,7 @@ import com.izforge.izpack.core.data.DefaultVariables;
 import com.izforge.izpack.core.io.VolumeLocator;
 import com.izforge.izpack.core.resource.ResourceManager;
 import com.izforge.izpack.core.substitutor.VariableSubstitutorImpl;
-import com.izforge.izpack.installer.data.InstallData;
+import com.izforge.izpack.installer.data.BasicInstallData;
 import com.izforge.izpack.installer.data.UninstallData;
 import com.izforge.izpack.installer.event.InstallerListeners;
 import com.izforge.izpack.installer.unpacker.ConsolePackResources;
@@ -389,7 +389,7 @@ public class MultiVolumeUnpackerTest
     private AutomatedInstallData createInstallData(File mediaDir, File installDir, Resources resources)
             throws IOException, ClassNotFoundException
     {
-        AutomatedInstallData installData = new InstallData(new DefaultVariables(), Platforms.LINUX);
+        AutomatedInstallData installData = new BasicInstallData(new DefaultVariables(), Platforms.LINUX);
 
         installData.setInstallPath(installDir.getPath());
         installData.setMediaPath(mediaDir.getPath());

@@ -1,33 +1,31 @@
 package com.izforge.izpack.installer.container;
 
-import static org.mockito.Mockito.when;
-
-import java.util.Arrays;
-
-import javax.swing.ImageIcon;
-
-import com.izforge.izpack.api.data.InstallData;
-import com.izforge.izpack.api.exception.IzPackException;
-import com.izforge.izpack.api.resource.Resources;
-import com.izforge.izpack.gui.IconsDatabase;
-import com.izforge.izpack.installer.data.GUIInstallData;
-import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
-
 import com.izforge.izpack.api.container.Container;
+import com.izforge.izpack.api.data.InstallData;
 import com.izforge.izpack.api.data.Variables;
 import com.izforge.izpack.api.exception.ContainerException;
+import com.izforge.izpack.api.exception.IzPackException;
+import com.izforge.izpack.api.resource.Resources;
 import com.izforge.izpack.core.container.AbstractContainer;
 import com.izforge.izpack.core.data.DefaultVariables;
 import com.izforge.izpack.core.resource.DefaultLocales;
 import com.izforge.izpack.core.resource.ResourceManager;
+import com.izforge.izpack.gui.IconsDatabase;
 import com.izforge.izpack.installer.automation.AutomatedInstaller;
 import com.izforge.izpack.installer.container.provider.IconsProvider;
+import com.izforge.izpack.installer.data.BasicInstallData;
 import com.izforge.izpack.installer.data.UninstallData;
 import com.izforge.izpack.installer.data.UninstallDataWriter;
 import com.izforge.izpack.merge.resolve.PathResolver;
 import com.izforge.izpack.test.provider.GUIInstallDataMockProvider;
+import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
+
+import javax.swing.*;
+import java.util.Arrays;
+
+import static org.mockito.Mockito.when;
 
 /**
  * Container for test language
@@ -85,6 +83,7 @@ public class TestLanguageContainer extends AbstractContainer {
         addComponent(Container.class, this);
 
         addProvider(InstallData.class, GUIInstallDataMockProvider.class);
+        addProvider(BasicInstallData.class, GUIInstallDataMockProvider.class);
         addProvider(IconsDatabase.class, IconsProvider.class);
     }
 

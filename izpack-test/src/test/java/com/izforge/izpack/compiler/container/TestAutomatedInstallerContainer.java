@@ -22,6 +22,7 @@
 package com.izforge.izpack.compiler.container;
 
 import com.izforge.izpack.api.data.ConsolePrefs;
+import com.izforge.izpack.installer.automation.PanelAutomationHelper;
 import com.izforge.izpack.installer.console.TestConsolePrefsProvider;
 import com.izforge.izpack.installer.container.impl.AutomatedInstallerContainer;
 import com.izforge.izpack.test.util.TestHousekeeper;
@@ -35,23 +36,14 @@ public class TestAutomatedInstallerContainer extends AutomatedInstallerContainer
 {
 
     /**
-     * Default constructor.
-     */
-    public TestAutomatedInstallerContainer()
-    {
-        super();
-    }
-
-    /**
      * Registers components with the container.
      */
     @Override
     protected void registerComponents()
     {
         super.registerComponents();
-        removeComponent(ConsolePrefs.class);
-        addProvider(ConsolePrefs.class, TestConsolePrefsProvider.class);
+//        addProvider(ConsolePrefs.class, TestConsolePrefsProvider.class);
         removeComponent(Housekeeper.class);
-        addComponent(TestHousekeeper.class);
+        addComponent(Housekeeper.class, TestHousekeeper.class);
     }
 }

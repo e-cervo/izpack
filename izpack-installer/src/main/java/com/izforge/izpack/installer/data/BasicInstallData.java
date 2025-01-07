@@ -8,10 +8,10 @@ import com.izforge.izpack.api.data.Variables;
 import com.izforge.izpack.util.Platform;
 
 
-public class InstallData extends AutomatedInstallData
+public class BasicInstallData extends AutomatedInstallData
 {
     @Inject
-    public InstallData(Variables variables, Platform platform)
+    public BasicInstallData(Variables variables, Platform platform)
     {
         super(variables, platform);
     }

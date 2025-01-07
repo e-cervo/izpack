@@ -22,7 +22,7 @@ import com.izforge.izpack.util.Platform;
 
 import java.io.Serializable;
 
-public class ConsoleInstallData extends InstallData implements Serializable
+public class ConsoleInstallData extends BasicInstallData implements Serializable
 {
     private static final long serialVersionUID = -4272255846202671405L;
 

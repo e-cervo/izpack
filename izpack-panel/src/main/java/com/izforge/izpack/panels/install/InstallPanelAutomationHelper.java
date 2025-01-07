@@ -21,6 +21,7 @@
 
 package com.izforge.izpack.panels.install;
 
+import com.google.inject.Inject;
 import com.izforge.izpack.api.adaptator.IXMLElement;
 import com.izforge.izpack.api.data.InstallData;
 import com.izforge.izpack.api.data.Overrides;
@@ -50,6 +51,7 @@ public class InstallPanelAutomationHelper extends PanelAutomationHelper implemen
      *
      * @param unpacker the unpacker
      */
+    @Inject
     public InstallPanelAutomationHelper(IUnpacker unpacker)
     {
         this.unpacker = unpacker;

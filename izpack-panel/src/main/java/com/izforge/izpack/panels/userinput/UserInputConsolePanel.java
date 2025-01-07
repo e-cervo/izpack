@@ -23,6 +23,7 @@ package com.izforge.izpack.panels.userinput;
 
 import com.google.inject.Inject;
 import com.izforge.izpack.api.adaptator.IXMLElement;
+import com.izforge.izpack.api.config.Options;
 import com.izforge.izpack.api.data.InstallData;
 import com.izforge.izpack.api.data.Panel;
 import com.izforge.izpack.api.factory.ObjectFactory;
@@ -32,7 +33,6 @@ import com.izforge.izpack.api.rules.Condition;
 import com.izforge.izpack.api.rules.RulesEngine;
 import com.izforge.izpack.installer.console.AbstractConsolePanel;
 import com.izforge.izpack.installer.console.ConsolePanel;
-import com.izforge.izpack.installer.console.ConsolePanelView;
 import com.izforge.izpack.installer.panel.PanelView;
 import com.izforge.izpack.panels.userinput.console.ConsoleField;
 import com.izforge.izpack.panels.userinput.console.ConsoleFieldFactory;
@@ -42,7 +42,6 @@ import com.izforge.izpack.panels.userinput.field.FieldHelper;
 import com.izforge.izpack.panels.userinput.field.UserInputPanelSpec;
 import com.izforge.izpack.util.Console;
 import com.izforge.izpack.util.PlatformModelMatcher;
-import com.izforge.izpack.api.config.Options;
 
 import java.util.*;
 import java.util.logging.Level;
@@ -119,7 +118,7 @@ public class UserInputConsolePanel extends AbstractConsolePanel
     @Inject
     public UserInputConsolePanel(Resources resources, ObjectFactory factory,
                                  RulesEngine rules, PlatformModelMatcher matcher, Console console, Prompt prompt,
-                                 ConsolePanelView panelView, InstallData installData)
+                                 PanelView<ConsolePanel> panelView, InstallData installData)
     {
         super(panelView);
         this.installData = installData;

@@ -22,6 +22,7 @@ package com.izforge.izpack.installer.gui;
 
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.izforge.izpack.api.resource.Messages;
 import com.izforge.izpack.gui.ButtonFactory;
 import com.izforge.izpack.gui.IconsDatabase;
@@ -39,6 +40,7 @@ import static com.izforge.izpack.api.GuiId.*;
  *
  * @author Tim Anderson
  */
+@Singleton
 public class DefaultNavigator implements Navigator
 {
     /**

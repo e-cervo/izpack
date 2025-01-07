@@ -21,13 +21,14 @@
 
 package com.izforge.izpack.integration.automation;
 
+import com.google.inject.Inject;
 import com.izforge.izpack.api.data.AutomatedInstallData;
 import com.izforge.izpack.api.data.InstallData;
 import com.izforge.izpack.compiler.container.TestAutomatedInstallationContainer;
 import com.izforge.izpack.installer.automation.AutomatedInstaller;
 import com.izforge.izpack.integration.AbstractInstallationTest;
 import com.izforge.izpack.integration.UninstallHelper;
-import com.izforge.izpack.test.Container;
+import com.izforge.izpack.test.ContainerImport;
 import com.izforge.izpack.test.InstallFile;
 import com.izforge.izpack.test.junit.GuiceRunner;
 import com.izforge.izpack.util.FileUtil;
@@ -59,7 +60,7 @@ import static org.junit.Assert.assertNotNull;
  * @author Tim Anderson
  */
 @RunWith(GuiceRunner.class)
-@Container(TestAutomatedInstallationContainer.class)
+@ContainerImport(TestAutomatedInstallationContainer.class)
 public class AutomatedInstallerTest extends AbstractInstallationTest
 {
 
@@ -74,6 +75,7 @@ public class AutomatedInstallerTest extends AbstractInstallationTest
      * @param installer   the installer
      * @param installData the installation data
      */
+    @Inject
     public AutomatedInstallerTest(AutomatedInstaller installer, AutomatedInstallData installData)
     {
         super(installData);

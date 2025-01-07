@@ -33,7 +33,7 @@ public class UninstallDataWriter
     /**
      * Install data.
      */
-    private final InstallData installData;
+    private final BasicInstallData installData;
 
     /**
      * The path resolver.
@@ -74,7 +74,7 @@ public class UninstallDataWriter
      * @param rules         the rules engine
      */
     @Inject
-    public UninstallDataWriter(UninstallData uninstallData, InstallData installData, PathResolver pathResolver,
+    public UninstallDataWriter(UninstallData uninstallData, BasicInstallData installData, PathResolver pathResolver,
                                RulesEngine rules)
     {
         this.uninstallData = uninstallData;
@@ -204,6 +204,7 @@ public class UninstallDataWriter
         uninstallerMerge.addAll(pathResolver.getMergeableFromPath("com/izforge/izpack/gui/"));
         uninstallerMerge.addAll(pathResolver.getMergeableFromPath("com/izforge/izpack/img/"));
         uninstallerMerge.addAll(pathResolver.getMergeableFromPath("jakarta/inject/"));
+        uninstallerMerge.addAll(pathResolver.getMergeableFromPath("com/google/"));
         uninstallerMerge.addAll(pathResolver.getMergeableFromPath("org/apache/commons/io/"));
 
         //required by console uninstaller

@@ -61,7 +61,7 @@ public class VariableSubstitutorInputStreamTest
                         .getBytes());
         VariableSubstitutorInputStream inputStream = new VariableSubstitutorInputStream(bais, variables,
                 SubstitutionType.TYPE_XML, false);
-        assertThat(inputStream.getEncoding(), Is.is("UTF-8"));
+        assertThat(inputStream.getEncoding(), Is.is(StandardCharsets.UTF_8.name()));
         int res;
         int index = 0;
         while ((res = inputStream.read()) != -1)
@@ -81,7 +81,7 @@ public class VariableSubstitutorInputStreamTest
                         .getBytes());
         VariableSubstitutorInputStream inputStream = new VariableSubstitutorInputStream(bais, variables,
                 SubstitutionType.TYPE_JAVA_PROPERTIES, false);
-        assertThat(inputStream.getEncoding(), Is.is("ISO-8859-1"));
+        assertThat(inputStream.getEncoding(), Is.is(StandardCharsets.ISO_8859_1.name()));
         int res;
         int index = 0;
         while ((res = inputStream.read()) != -1)

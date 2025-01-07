@@ -21,6 +21,7 @@ import com.izforge.izpack.api.substitutor.SubstitutionType;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 /**
  * An input stream which resolves IzPack variables on the fly
@@ -51,10 +52,10 @@ public class VariableSubstitutorInputStream extends InputStream
             switch (type)
             {
                 case TYPE_JAVA_PROPERTIES:
-                    encoding = "ISO-8859-1";
+                    encoding = StandardCharsets.ISO_8859_1.name();
                     break;
                 case TYPE_XML:
-                    encoding = "UTF-8";
+                    encoding = StandardCharsets.UTF_8.name();
                     break;
             }
         }

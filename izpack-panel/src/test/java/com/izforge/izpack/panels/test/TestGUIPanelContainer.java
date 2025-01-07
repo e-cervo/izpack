@@ -28,7 +28,9 @@ import com.izforge.izpack.gui.IconsDatabase;
 import com.izforge.izpack.gui.log.Log;
 import com.izforge.izpack.installer.base.InstallDataConfiguratorWithRules;
 import com.izforge.izpack.installer.container.provider.IconsProvider;
+import com.izforge.izpack.installer.data.BasicInstallData;
 import com.izforge.izpack.installer.data.GUIInstallData;
+import com.izforge.izpack.test.provider.ConsoleInstallDataMockProvider;
 import com.izforge.izpack.test.provider.GUIInstallDataMockProvider;
 import org.mockito.Mockito;
 
@@ -65,6 +67,7 @@ public class TestGUIPanelContainer extends AbstractTestPanelContainer
         addComponent(Prompt.class, GUIPrompt.class);
 
         addProvider(InstallData.class, GUIInstallDataMockProvider.class);
+        addProvider(BasicInstallData.class, GUIInstallDataMockProvider.class);
         addProvider(IconsDatabase.class, IconsProvider.class);
     }
 }

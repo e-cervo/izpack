@@ -26,6 +26,7 @@ import com.izforge.izpack.api.data.Pack;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -121,14 +122,7 @@ public class InstallationGroups
         {
             sortKey = group;
         }
-        try
-        {
-            sortKey = URLDecoder.decode(sortKey, "UTF-8");
-        }
-        catch (UnsupportedEncodingException e)
-        {
-            logger.warning("Failed to convert sortKey" + e.getMessage());
-        }
+        sortKey = URLDecoder.decode(sortKey, StandardCharsets.UTF_8);
 
         return sortKey;
     }
@@ -167,14 +161,7 @@ public class InstallationGroups
         {
             description = group + " installation";
         }
-        try
-        {
-            description = URLDecoder.decode(description, "UTF-8");
-        }
-        catch (UnsupportedEncodingException e)
-        {
-            logger.warning("Failed to convert description: "+e.getMessage());
-        }
+        description = URLDecoder.decode(description, StandardCharsets.UTF_8);
 
         return description;
     }
@@ -213,14 +200,7 @@ public class InstallationGroups
         {
             gname = group;
         }
-        try
-        {
-            gname = URLDecoder.decode(gname, "UTF-8");
-        }
-        catch (UnsupportedEncodingException e)
-        {
-            logger.warning("Failed to convert localized group name: " + e.getMessage());
-        }
+        gname = URLDecoder.decode(gname, StandardCharsets.UTF_8);
 
         return gname;
     }

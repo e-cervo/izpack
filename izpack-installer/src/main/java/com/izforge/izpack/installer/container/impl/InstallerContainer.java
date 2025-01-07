@@ -105,14 +105,12 @@ public abstract class InstallerContainer extends AbstractContainer
         addComponent(TargetFactory.class);
         addComponent(TargetPlatformFactory.class, DefaultTargetPlatformFactory.class);
         addComponent(ObjectFactory.class, DefaultObjectFactory.class);
-//        addComponent(Resources.class, DefaultResources.class);
         addComponent(PathResolver.class);
         addComponent(MergeableResolver.class);
         addComponent(Platforms.class);
         addComponent(PlatformModelMatcher.class);
 
         addComponent(VariableSubstitutor.class, VariableSubstitutorImpl.class);
-        addComponent(Variables.class, DefaultVariables.class);
     }
 
     /**

@@ -26,6 +26,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -493,14 +494,7 @@ public class InstallationGroupPanel extends IzPanel
         {
             description = group + " installation";
         }
-        try
-        {
-            description = URLDecoder.decode(description, "UTF-8");
-        }
-        catch (UnsupportedEncodingException e)
-        {
-            emitWarning("Failed to convert description", e.getMessage());
-        }
+        description = URLDecoder.decode(description, StandardCharsets.UTF_8);
 
         return description;
     }
@@ -521,14 +515,7 @@ public class InstallationGroupPanel extends IzPanel
         {
             sortKey = group;
         }
-        try
-        {
-            sortKey = URLDecoder.decode(sortKey, "UTF-8");
-        }
-        catch (UnsupportedEncodingException e)
-        {
-            emitWarning("Failed to convert sortKey", e.getMessage());
-        }
+        sortKey = URLDecoder.decode(sortKey, StandardCharsets.UTF_8);
 
         return sortKey;
     }
@@ -567,14 +554,7 @@ public class InstallationGroupPanel extends IzPanel
         {
             gname = group;
         }
-        try
-        {
-            gname = URLDecoder.decode(gname, "UTF-8");
-        }
-        catch (UnsupportedEncodingException e)
-        {
-            emitWarning("Failed to convert localized group name", e.getMessage());
-        }
+        gname = URLDecoder.decode(gname, StandardCharsets.UTF_8);
 
         return gname;
     }

@@ -22,6 +22,7 @@
 package com.izforge.izpack.installer.container.impl;
 
 
+import com.izforge.izpack.api.data.AutomatedInstallData;
 import com.izforge.izpack.api.data.ConsolePrefs;
 import com.izforge.izpack.api.data.InstallData;
 import com.izforge.izpack.api.exception.ContainerException;
@@ -32,11 +33,13 @@ import com.izforge.izpack.installer.console.ConsoleInstaller;
 import com.izforge.izpack.installer.console.ConsolePanelAutomationHelper;
 import com.izforge.izpack.installer.console.ConsolePanels;
 import com.izforge.izpack.installer.container.provider.*;
+import com.izforge.izpack.installer.data.BasicInstallData;
 import com.izforge.izpack.installer.data.ConsoleInstallData;
 import com.izforge.izpack.installer.language.LanguageConsoleDialog;
 import com.izforge.izpack.installer.multiunpacker.MultiVolumeUnpackerAutomationHelper;
 import com.izforge.izpack.installer.panel.Panels;
 import com.izforge.izpack.installer.unpacker.ConsolePackResources;
+import com.izforge.izpack.installer.unpacker.PackResources;
 import com.izforge.izpack.util.Console;
 
 /**
@@ -47,15 +50,6 @@ import com.izforge.izpack.util.Console;
 public class ConsoleInstallerContainer extends InstallerContainer {
 
     /**
-     * Constructs a <tt>ConsoleInstallerContainer</tt>.
-     *
-     * @throws ContainerException if initialisation fails
-     */
-    public ConsoleInstallerContainer() {
-        initialise();
-    }
-
-    /**
      * Registers components with the container.
      */
     @Override
@@ -63,7 +57,10 @@ public class ConsoleInstallerContainer extends InstallerContainer {
         super.registerComponents();
 
         addProvider(InstallData.class, ConsoleInstallDataProvider.class);
-        addProvider(Panels.class, ConsolePanelsProvider.class);
+        addProvider(ConsoleInstallData.class, ConsoleInstallDataProvider.class);
+        addProvider(BasicInstallData.class, ConsoleInstallDataProvider.class);
+        addProvider(AutomatedInstallData.class, ConsoleInstallDataProvider.class);
+        addProvider(ConsolePanels.class, ConsolePanelsProvider.class);
         addProvider(Messages.class, MessagesProvider.class); // required by ConsolePrompt and Console
         addProvider(ConsolePrefs.class, ConsolePrefsProvider.class); // required by Console
 
@@ -71,7 +68,7 @@ public class ConsoleInstallerContainer extends InstallerContainer {
         addComponent(Prompt.class, ConsolePrompt.class);
         addComponent(ConsoleInstaller.class);
         addComponent(ConsolePanelAutomationHelper.class);
-        addComponent(ConsolePackResources.class);
+        addComponent(PackResources.class, ConsolePackResources.class);
         addComponent(MultiVolumeUnpackerAutomationHelper.class);
         addComponent(LanguageConsoleDialog.class);
     }

@@ -94,7 +94,6 @@ public class Config
      * @param resources   the resources
      * @param installData the installation data
      * @param factory     the factory
-     * @param messages    the messages
      */
     public Config(String path, Resources resources, InstallData installData, ObjectFactory factory)
     {

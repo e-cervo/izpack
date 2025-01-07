@@ -28,7 +28,7 @@ import com.izforge.izpack.installer.console.ConsolePanel;
 import com.izforge.izpack.installer.data.ConsoleInstallData;
 import com.izforge.izpack.installer.panel.PanelView;
 import com.izforge.izpack.panels.test.TestConsolePanelContainer;
-import com.izforge.izpack.test.Container;
+import com.izforge.izpack.test.ContainerImport;
 import com.izforge.izpack.test.junit.GuiceRunner;
 import com.izforge.izpack.test.util.TestConsole;
 import org.junit.Test;
@@ -47,7 +47,7 @@ import static org.junit.Assert.assertTrue;
  * @author Hitesh A. Bosamiya
  */
 @RunWith(GuiceRunner.class)
-@Container(TestConsolePanelContainer.class)
+@ContainerImport(TestConsolePanelContainer.class)
 public class DataCheckConsolePanelTest
 {
     /**

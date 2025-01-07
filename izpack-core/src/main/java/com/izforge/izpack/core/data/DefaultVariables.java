@@ -21,6 +21,8 @@
 
 package com.izforge.izpack.core.data;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.izforge.izpack.api.data.DynamicVariable;
 import com.izforge.izpack.api.data.Overrides;
 import com.izforge.izpack.api.data.Variables;
@@ -41,6 +43,7 @@ import java.util.logging.Logger;
  *
  * @author Tim Anderson
  */
+@Singleton
 public class DefaultVariables implements Variables
 {
     /**
@@ -92,6 +95,7 @@ public class DefaultVariables implements Variables
      *
      * @param properties the properties
      */
+    @Inject
     public DefaultVariables(Properties properties)
     {
         this.properties = properties;

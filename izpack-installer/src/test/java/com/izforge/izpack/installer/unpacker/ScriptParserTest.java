@@ -17,6 +17,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -64,13 +65,13 @@ public class ScriptParserTest {
     PlatformModelMatcher matcher = new PlatformModelMatcher(new Platforms(), Platforms.WINDOWS);
     ScriptParser scriptParser = new ScriptParser(replacer, matcher);
 
-    FileUtils.writeStringToFile(file, "${pippo}\n${pluto}\n", "UTF-8");
+    FileUtils.writeStringToFile(file, "${pippo}\n${pluto}\n", StandardCharsets.UTF_8.name());
 
-    ParsableFile parsable = new ParsableFile(file.getAbsolutePath(), SubstitutionType.TYPE_PLAIN, "UTF-8", new ArrayList<OsModel>());
+    ParsableFile parsable = new ParsableFile(file.getAbsolutePath(), SubstitutionType.TYPE_PLAIN, StandardCharsets.UTF_8.name(), new ArrayList<OsModel>());
 
     scriptParser.parse(parsable);
 
-    String content = FileUtils.readFileToString(file, "UTF-8");
+    String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8.name());
     Assert.assertThat(content, containsString("PIPPO"));
     Assert.assertThat(content, containsString("plutò"));
   }
@@ -82,13 +83,13 @@ public class ScriptParserTest {
     PlatformModelMatcher matcher = new PlatformModelMatcher(new Platforms(), Platforms.WINDOWS);
     ScriptParser scriptParser = new ScriptParser(replacer, matcher);
 
-    FileUtils.writeStringToFile(file, "PIPPO\nplutò\n", "UTF-8");
+    FileUtils.writeStringToFile(file, "PIPPO\nplutò\n", StandardCharsets.UTF_8.name());
 
-    ParsableFile parsable = new ParsableFile(file.getAbsolutePath(), SubstitutionType.TYPE_PLAIN, "UTF-8", new ArrayList<OsModel>());
+    ParsableFile parsable = new ParsableFile(file.getAbsolutePath(), SubstitutionType.TYPE_PLAIN, StandardCharsets.UTF_8.name(), new ArrayList<OsModel>());
 
     scriptParser.parse(parsable);
 
-    String content = FileUtils.readFileToString(file, "UTF-8");
+    String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8.name());
     Assert.assertThat(content, containsString("PIPPO"));
     Assert.assertThat(content, containsString("plutò"));
   }
@@ -109,13 +110,13 @@ public class ScriptParserTest {
         "        <Параметер Наименование=\"Количество столбцов на табло\" Тип=\"1\" Значение=\"1\"/>\n" +
         "        <Параметер Наименование=\"Окантовка строк\" Тип=\"3\" Значение=\"0,0,0,0;5,0,0,0\"/>";
 
-    FileUtils.writeStringToFile(file, cyrillicContent, "UTF-8");
+    FileUtils.writeStringToFile(file, cyrillicContent, StandardCharsets.UTF_8.name());
 
-    ParsableFile parsable = new ParsableFile(file.getAbsolutePath(), SubstitutionType.TYPE_PLAIN, "UTF-8", new ArrayList<OsModel>());
+    ParsableFile parsable = new ParsableFile(file.getAbsolutePath(), SubstitutionType.TYPE_PLAIN, StandardCharsets.UTF_8.name(), new ArrayList<OsModel>());
 
     scriptParser.parse(parsable);
 
-    String content = FileUtils.readFileToString(file, "UTF-8");
+    String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8.name());
     Assert.assertEquals(cyrillicContent, content);
   }
 

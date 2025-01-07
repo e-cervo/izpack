@@ -23,6 +23,7 @@
 package com.izforge.izpack.core.container;
 
 import com.google.inject.*;
+import com.google.inject.Module;
 import com.google.inject.binder.AnnotatedBindingBuilder;
 import com.google.inject.name.Names;
 import com.izforge.izpack.api.container.Container;
@@ -45,8 +46,8 @@ public abstract class AbstractContainer implements Container {
     /**
      * The underlying container.
      */
-    private final List<SimpleModule<?>> modules = new ArrayList<>();
-    private final Injector parent;
+    private final List<Module> modules = new ArrayList<>();
+    private Injector parent;
     private Injector injector;
 
     /**
@@ -60,6 +61,14 @@ public abstract class AbstractContainer implements Container {
 
     public AbstractContainer(boolean fillContainer) {
         this(null, fillContainer);
+    }
+
+    public List<Module> getModules() {
+        return modules;
+    }
+
+    public void addModules(List<Module> modules) {
+        this.modules.addAll(modules);
     }
 
     /**
@@ -86,22 +95,22 @@ public abstract class AbstractContainer implements Container {
      */
     @Override
     public <T> void addComponent(Class<T> componentType) {
-        addModule(componentType, binder -> binder.in(Scopes.SINGLETON));
+        addSimpleModule(componentType, binder -> binder.in(Scopes.SINGLETON));
     }
 
     @Override
     public <T> void addComponent(T component) {
-        addModule((Class<T>) component.getClass(), binder -> binder.toInstance(component));
+        addSimpleModule((Class<T>) component.getClass(), binder -> binder.toInstance(component));
     }
 
     @Override
     public <T, U extends T> void addProvider(Class<T> type, Class<? extends Provider<U>> provider) {
-        addModule(type, binder -> binder.toProvider(provider).in(Scopes.SINGLETON));
+        addSimpleModule(type, binder -> binder.toProvider(provider).in(Scopes.SINGLETON));
     }
 
     @Override
     public <T, U extends T> void addProvider(Class<T> type, Provider<U> provider) {
-        addModule(type, binder -> binder.toProvider(provider));
+        addSimpleModule(type, binder -> binder.toProvider(provider));
     }
 
     /**
@@ -113,42 +122,62 @@ public abstract class AbstractContainer implements Container {
      */
     @Override
     public <T, U extends T> void addComponent(Class<T> componentKey, Class<U> implementation) {
-        addModule(componentKey, binder -> binder.to(implementation).in(Scopes.SINGLETON));
+        addSimpleModule(componentKey, binder -> binder.to(implementation).in(Scopes.SINGLETON));
+    }
+
+    @Override
+    public <T, U extends T> void addComponent(TypeLiteral<T> componentKey, Class<U> implementation) {
+        addTypeLiteralModule(componentKey, binder -> binder.to(implementation).in(Scopes.SINGLETON));
+    }
+
+    @Override
+    public <T, U extends T> void addComponent(TypeLiteral<T> componentKey, U implementation) {
+        addTypeLiteralModule(componentKey, binder -> binder.toInstance(implementation));
     }
 
     @Override
     public <T, U extends T> void addComponent(Class<T> componentKey, U implementation) {
-        addModule(componentKey, binder -> binder.toInstance(implementation));
+        addSimpleModule(componentKey, binder -> binder.toInstance(implementation));
     }
 
     @Override
     public <T, U extends T> void addComponent(String componentKey, Class<T> type, U implementation) {
-        addModule(type, binder -> binder
+        addSimpleModule(type, binder -> binder
                 .annotatedWith(Names.named(componentKey))
                 .toInstance(implementation));
     }
 
     @Override
     public <T, U extends T> void addComponent(String componentKey, Class<T> type, Class<U> implementation) {
-        addModule(type, binder -> binder
+        addSimpleModule(type, binder -> binder
                 .annotatedWith(Names.named(componentKey))
                 .to(implementation)
                 .in(Scopes.SINGLETON));
     }
 
-    private <T> void addModule(Class<T> componentKey, Consumer<AnnotatedBindingBuilder<T>> mapper) {
-        if (this.injector != null) {
-            throw new IllegalStateException("Cannot add " + componentKey.getSimpleName() + " after container has been initialized");
-        }
+    private <T> void addSimpleModule(Class<T> componentKey, Consumer<AnnotatedBindingBuilder<T>> mapper) {
+        flushInjector();
         this.modules.add(new SimpleModule<T>(componentKey, mapper));
     }
 
-    @Override
-    public <T> void removeComponent(Class<T> componentType) {
-        if (this.injector != null) {
-            throw new IllegalStateException("Cannot remove component " + componentType.getSimpleName() + " after container has been initialized");
+    private <T> void addTypeLiteralModule(TypeLiteral<T> typeLiteral, Consumer<AnnotatedBindingBuilder<T>> mapper) {
+        flushInjector();
+        this.modules.add(new TypeLiteralModule<T>(typeLiteral, mapper));
+    }
+
+    private void flushInjector() {
+        if (injector != null) {
+            parent = injector;
+            modules.clear();
+            injector = null;
         }
-        this.modules.removeIf(module -> module.componentKey.equals(componentType));
+    }
+
+    // For test only
+    public <T> void removeComponent(Class<T> type) {
+        modules.removeIf(module ->
+                module instanceof SimpleModule && ((SimpleModule<?>) module).componentKey.equals(type)
+        );
     }
 
     /**
@@ -307,7 +336,7 @@ public abstract class AbstractContainer implements Container {
         }
     }
 
-    private static class SimpleModule<T> implements com.google.inject.Module {
+    private static class SimpleModule<T> implements Module {
         private final Class<T> componentKey;
         private final Consumer<AnnotatedBindingBuilder<T>> mapper;
 
@@ -319,6 +348,21 @@ public abstract class AbstractContainer implements Container {
         @Override
         public final void configure(Binder binder) {
             mapper.accept(binder.bind(componentKey));
+        }
+    }
+
+    public static class TypeLiteralModule<T> implements Module {
+        private final TypeLiteral<T> typeLiteral;
+        private final Consumer<AnnotatedBindingBuilder<T>> mapper;
+
+        private TypeLiteralModule(TypeLiteral<T> typeLiteral, Consumer<AnnotatedBindingBuilder<T>> mapper) {
+            this.typeLiteral = typeLiteral;
+            this.mapper = mapper;
+        }
+
+        @Override
+        public final void configure(Binder binder) {
+            mapper.accept(binder.bind(typeLiteral));
         }
     }
 }
