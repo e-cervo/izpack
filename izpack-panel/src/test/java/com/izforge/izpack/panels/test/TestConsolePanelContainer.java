@@ -36,6 +36,7 @@ import com.izforge.izpack.installer.console.ConsolePanels;
 import com.izforge.izpack.installer.container.provider.AutomatedPanelsProvider;
 import com.izforge.izpack.installer.container.provider.ConsolePanelsProvider;
 import com.izforge.izpack.installer.container.provider.MessagesProvider;
+import com.izforge.izpack.installer.data.BasicInstallData;
 import com.izforge.izpack.installer.data.ConsoleInstallData;
 import com.izforge.izpack.test.provider.ConsoleInstallDataMockProvider;
 import com.izforge.izpack.test.util.TestConsole;
@@ -59,6 +60,7 @@ public class TestConsolePanelContainer extends AbstractTestPanelContainer {
         addProvider(Messages.class, MessagesProvider.class);
         addProvider(ConsoleInstallData.class, ConsoleInstallDataMockProvider.class);
         addProvider(InstallData.class, ConsoleInstallDataMockProvider.class);
+        addProvider(BasicInstallData.class, ConsoleInstallDataMockProvider.class);
         addProvider(AutomatedInstallData.class, ConsoleInstallDataMockProvider.class);
         addProvider(ConsolePrefs.class, ConsolePrefsProvider.class);
         addComponent(Console.class, TestConsole.class);

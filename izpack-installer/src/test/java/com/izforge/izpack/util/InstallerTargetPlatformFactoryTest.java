@@ -21,6 +21,7 @@
 package com.izforge.izpack.util;
 
 import com.izforge.izpack.api.container.Container;
+import com.izforge.izpack.api.data.InstallData;
 import com.izforge.izpack.api.data.Variables;
 import com.izforge.izpack.api.factory.ObjectFactory;
 import com.izforge.izpack.api.resource.Resources;
@@ -30,7 +31,7 @@ import com.izforge.izpack.core.data.DefaultVariables;
 import com.izforge.izpack.core.factory.DefaultObjectFactory;
 import com.izforge.izpack.core.os.RegistryHandler;
 import com.izforge.izpack.core.resource.ResourceManager;
-import com.izforge.izpack.installer.data.InstallData;
+import com.izforge.izpack.installer.data.BasicInstallData;
 import com.izforge.izpack.test.util.TestLibrarian;
 import com.izforge.izpack.util.os.Shortcut;
 import com.izforge.izpack.util.os.Unix_Shortcut;
@@ -77,7 +78,7 @@ public class InstallerTargetPlatformFactoryTest
                 addComponent(Properties.class);
                 addComponent(Variables.class, DefaultVariables.class);
                 addComponent(Resources.class, ResourceManager.class);
-                addComponent(com.izforge.izpack.api.data.InstallData.class, InstallData.class);
+                addComponent(InstallData.class, BasicInstallData.class);
                 addComponent(TestLibrarian.class);
                 addComponent(Housekeeper.class);
                 addComponent(TargetFactory.class);

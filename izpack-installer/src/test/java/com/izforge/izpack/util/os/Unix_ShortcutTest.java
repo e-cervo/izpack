@@ -27,11 +27,11 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 import java.util.Properties;
 
-import com.google.inject.util.Providers;
 import com.izforge.izpack.api.data.InstallData;
 import com.izforge.izpack.api.data.Variables;
 import com.izforge.izpack.api.factory.ObjectFactory;
 import com.izforge.izpack.api.resource.Resources;
+import com.izforge.izpack.installer.data.BasicInstallData;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -91,7 +91,7 @@ public class Unix_ShortcutTest
                 addComponent(Properties.class);
                 addComponent(Variables.class, DefaultVariables.class);
                 addComponent(Resources.class, ResourceManager.class);
-                addComponent(InstallData.class, com.izforge.izpack.installer.data.InstallData.class);
+                addComponent(InstallData.class, BasicInstallData.class);
                 addComponent(TestLibrarian.class);
                 addComponent(Housekeeper.class);
                 addComponent(TargetFactory.class);

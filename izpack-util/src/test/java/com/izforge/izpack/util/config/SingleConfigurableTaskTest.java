@@ -13,6 +13,7 @@ import org.junit.rules.TemporaryFolder;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
 import static org.junit.Assert.*;
@@ -464,7 +465,7 @@ public class SingleConfigurableTaskTest
 
         printFileContent(toFile);
         printFileContent(expectedFile);
-        assertEquals(FileUtils.contentEqualsIgnoreEOL(expectedFile, toFile, "ISO-8859-1"), true);
+        assertEquals(FileUtils.contentEqualsIgnoreEOL(expectedFile, toFile, StandardCharsets.ISO_8859_1.name()), true);
     }
 
     @Test
@@ -506,7 +507,7 @@ public class SingleConfigurableTaskTest
 
         printFileContent(toFile);
         printFileContent(expectedFile);
-        assertEquals(FileUtils.contentEqualsIgnoreEOL(expectedFile, toFile, "ISO-8859-1"), true);
+        assertEquals(FileUtils.contentEqualsIgnoreEOL(expectedFile, toFile, StandardCharsets.ISO_8859_1.name()), true);
     }
 
     private void printFileContent(File file)

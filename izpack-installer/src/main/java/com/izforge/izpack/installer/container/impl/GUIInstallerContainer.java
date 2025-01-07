@@ -10,6 +10,7 @@ import com.izforge.izpack.gui.log.Log;
 import com.izforge.izpack.installer.container.provider.GUIInstallDataProvider;
 import com.izforge.izpack.installer.container.provider.IconsProvider;
 import com.izforge.izpack.installer.container.provider.IzPanelsProvider;
+import com.izforge.izpack.installer.data.BasicInstallData;
 import com.izforge.izpack.installer.data.GUIInstallData;
 import com.izforge.izpack.installer.gui.*;
 import com.izforge.izpack.installer.language.LanguageDialog;
@@ -33,13 +34,14 @@ public class GUIInstallerContainer extends InstallerContainer {
         super.registerComponents();
 
         addProvider(GUIInstallData.class, GUIInstallDataProvider.class);
+        addProvider(BasicInstallData.class, GUIInstallDataProvider.class);
         addProvider(InstallData.class, GUIInstallDataProvider.class);
         addProvider(IzPanels.class, IzPanelsProvider.class);
         addProvider(IconsDatabase.class, IconsProvider.class);
 
         addComponent(Prompt.class, GUIPrompt.class);
         addComponent(InstallerController.class);
-        addComponent(DefaultNavigator.class);
+        addComponent(Navigator.class, DefaultNavigator.class);
         addComponent(InstallerFrame.class);
         addComponent(Log.class);
         addComponent(PackResources.class, GUIPackResources.class);

@@ -30,6 +30,7 @@ import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author Anthonin Bonnefoy
@@ -73,7 +74,7 @@ public class XMLWriter implements IXMLWriter
             TransformerFactory fabrique = TransformerFactory.newInstance();
             Transformer transformer = fabrique.newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+            transformer.setOutputProperty(OutputKeys.ENCODING, StandardCharsets.UTF_8.name());
             Result result;
             if (outputStream != null)
             {

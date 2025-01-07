@@ -32,6 +32,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -81,11 +82,11 @@ public class FileUtil
             final String encodedQuery = url.getQuery();
             if (encodedQuery !=null && encodedQuery.isEmpty())
             {
-              result.append('?').append(URLDecoder.decode(encodedQuery, "UTF-8"));
+              result.append('?').append(URLDecoder.decode(encodedQuery, StandardCharsets.UTF_8));
             }
             return result.toString();
         }
-        catch (final URISyntaxException | UnsupportedEncodingException e)
+        catch (final URISyntaxException e)
         {
             throw new RuntimeException(e);
         }

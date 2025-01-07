@@ -6,7 +6,7 @@ import com.izforge.izpack.api.data.AutomatedInstallData;
 import com.izforge.izpack.api.resource.Locales;
 import com.izforge.izpack.api.resource.Resources;
 import com.izforge.izpack.core.data.DefaultVariables;
-import com.izforge.izpack.installer.data.InstallData;
+import com.izforge.izpack.installer.data.BasicInstallData;
 import com.izforge.izpack.util.Housekeeper;
 import com.izforge.izpack.util.PlatformModelMatcher;
 
@@ -42,7 +42,7 @@ public class AutomatedInstallDataProvider extends AbstractInstallDataProvider<Au
     public AutomatedInstallData loadInstallData()
     {
         try {
-            AutomatedInstallData automatedInstallData = new InstallData(variables, matcher.getCurrentPlatform());
+            AutomatedInstallData automatedInstallData = new BasicInstallData(variables, matcher.getCurrentPlatform());
             automatedInstallData.setVariable(com.izforge.izpack.api.data.InstallData.INSTALLER_MODE, com.izforge.izpack.api.data.InstallData.INSTALLER_MODE_AUTO);
             // Loads the installation data
             loadInstallData(automatedInstallData, resources, matcher, housekeeper);

@@ -36,7 +36,7 @@ import com.izforge.izpack.core.rules.ConditionContainer;
 import com.izforge.izpack.core.rules.RulesEngineImpl;
 import com.izforge.izpack.gui.IconsDatabase;
 import com.izforge.izpack.installer.data.GUIInstallData;
-import com.izforge.izpack.installer.data.InstallData;
+import com.izforge.izpack.installer.data.BasicInstallData;
 import com.izforge.izpack.util.Platform;
 import com.izforge.izpack.util.Platforms;
 import org.junit.Test;
@@ -100,7 +100,7 @@ public class DefaultNavigatorTest
             {
                 addComponent(InstallerFrame.class, frame);
                 addComponent(Resources.class, resources);
-                addComponent(InstallData.class, installData);
+                addComponent(BasicInstallData.class, installData);
                 addComponent(Variables.class, variables);
                 addComponent(Platform.class, Platforms.WINDOWS);
             }

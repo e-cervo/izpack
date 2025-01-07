@@ -28,6 +28,7 @@ import com.izforge.izpack.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -92,7 +93,7 @@ public class PasswordEncryptionProcessor implements Processor
         String result;
         try
         {
-            byte[] cryptedbytes = encryptCipher.doFinal(string.getBytes("UTF-8"));
+            byte[] cryptedbytes = encryptCipher.doFinal(string.getBytes(StandardCharsets.UTF_8));
             result = Base64.encodeBytes(cryptedbytes);
         }
         catch (Throwable exception)

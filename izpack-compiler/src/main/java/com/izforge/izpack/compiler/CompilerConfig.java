@@ -99,6 +99,7 @@ import org.apache.commons.lang3.StringUtils;
 import javax.annotation.Nullable;
 import java.io.*;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.util.*;
 import java.util.logging.*;
@@ -2149,7 +2150,7 @@ public class CompilerConfig extends Thread
 
                     InputStreamReader reader = new InputStreamReader(originalUrl.openStream(), encoding);
                     OutputStreamWriter writer = new OutputStreamWriter(
-                            new FileOutputStream(recodedFile), "UTF-8");
+                            new FileOutputStream(recodedFile), StandardCharsets.UTF_8);
 
                     char[] buffer = new char[1024];
                     int read;
@@ -2216,7 +2217,7 @@ public class CompilerConfig extends Thread
                         }
                         // VariableSubstitutor vs = new
                         // VariableSubstitutorImpl(compiler.getVariables());
-                        variableSubstitutor.substitute(is, os, type, "UTF-8");
+                        variableSubstitutor.substitute(is, os, type, StandardCharsets.UTF_8.name());
                     }
                 }
 

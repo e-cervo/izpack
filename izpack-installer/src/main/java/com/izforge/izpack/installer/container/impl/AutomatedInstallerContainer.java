@@ -33,6 +33,7 @@ import com.izforge.izpack.installer.automation.PanelAutomationHelper;
 import com.izforge.izpack.installer.console.ConsolePanelAutomationHelper;
 import com.izforge.izpack.installer.container.provider.AutomatedInstallDataProvider;
 import com.izforge.izpack.installer.container.provider.AutomatedPanelsProvider;
+import com.izforge.izpack.installer.data.BasicInstallData;
 import com.izforge.izpack.installer.data.ConsoleInstallData;
 import com.izforge.izpack.installer.multiunpacker.MultiVolumeUnpackerAutomationHelper;
 import com.izforge.izpack.installer.panel.Panels;

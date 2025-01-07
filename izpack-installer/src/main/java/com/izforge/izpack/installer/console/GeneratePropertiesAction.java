@@ -29,7 +29,7 @@ import com.izforge.izpack.api.data.InstallData;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
@@ -66,7 +66,7 @@ class GeneratePropertiesAction extends ConsoleAction
         Config config = this.options.getConfig();
         config.setEmptyLines(true);
         config.setHeaderComment(true);
-        config.setFileEncoding(Charset.forName("ISO-8859-1"));
+        config.setFileEncoding(StandardCharsets.ISO_8859_1);
         this.options.setHeaderComment(Arrays.asList(info.getAppName() + " " + info.getAppVersion()));
         this.path = path;
     }

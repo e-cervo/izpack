@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 import javax.imageio.ImageIO;
@@ -121,7 +122,7 @@ public abstract class AbstractResources implements Resources
     {
         try
         {
-            return readString(name, "UTF-8");
+            return readString(name, StandardCharsets.UTF_8.name());
         }
         catch (IOException exception)
         {
@@ -139,7 +140,7 @@ public abstract class AbstractResources implements Resources
     @Override
     public String getString(String name, String defaultValue)
     {
-        return getString(name, "UTF-8", defaultValue);
+        return getString(name, StandardCharsets.UTF_8.name(), defaultValue);
     }
 
     /**

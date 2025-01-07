@@ -66,7 +66,7 @@ public class PacksConsoleInstallationTest extends AbstractConsoleInstallationTes
     {
         super(installData);
         this.installer = installer;
-        this.installData=installData;
+        this.installData = installData;
     }
 
     /**

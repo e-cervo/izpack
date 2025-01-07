@@ -25,7 +25,7 @@ import com.izforge.izpack.api.data.VariableMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class DefaultOverrides extends Options implements Overrides
@@ -33,7 +33,7 @@ public class DefaultOverrides extends Options implements Overrides
     public DefaultOverrides(File file) throws IOException
     {
         Config config = Config.getGlobal().clone();
-        config.setFileEncoding(Charset.forName("UTF-8"));
+        config.setFileEncoding(StandardCharsets.UTF_8);
         config.setInclude(true);
         config.setComment(true);
         setConfig(config);

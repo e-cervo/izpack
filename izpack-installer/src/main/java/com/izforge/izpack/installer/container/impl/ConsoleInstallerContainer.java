@@ -33,6 +33,7 @@ import com.izforge.izpack.installer.console.ConsoleInstaller;
 import com.izforge.izpack.installer.console.ConsolePanelAutomationHelper;
 import com.izforge.izpack.installer.console.ConsolePanels;
 import com.izforge.izpack.installer.container.provider.*;
+import com.izforge.izpack.installer.data.BasicInstallData;
 import com.izforge.izpack.installer.data.ConsoleInstallData;
 import com.izforge.izpack.installer.language.LanguageConsoleDialog;
 import com.izforge.izpack.installer.multiunpacker.MultiVolumeUnpackerAutomationHelper;
@@ -57,6 +58,7 @@ public class ConsoleInstallerContainer extends InstallerContainer {
 
         addProvider(InstallData.class, ConsoleInstallDataProvider.class);
         addProvider(ConsoleInstallData.class, ConsoleInstallDataProvider.class);
+        addProvider(BasicInstallData.class, ConsoleInstallDataProvider.class);
         addProvider(AutomatedInstallData.class, ConsoleInstallDataProvider.class);
         addProvider(ConsolePanels.class, ConsolePanelsProvider.class);
         addProvider(Messages.class, MessagesProvider.class); // required by ConsolePrompt and Console

@@ -21,12 +21,7 @@ import com.izforge.izpack.api.adaptator.IXMLElement;
 import com.izforge.izpack.api.adaptator.IXMLParser;
 import com.izforge.izpack.api.adaptator.XMLException;
 import org.w3c.dom.Node;
-import org.xml.sax.ErrorHandler;
-import org.xml.sax.InputSource;
-import org.xml.sax.Locator;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
-import org.xml.sax.XMLReader;
+import org.xml.sax.*;
 
 import javax.xml.XMLConstants;
 import javax.xml.parsers.ParserConfigurationException;
@@ -44,7 +39,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.Logger;
 
 public class XMLParser implements IXMLParser
@@ -236,7 +231,7 @@ public class XMLParser implements IXMLParser
     {
         this.parsedItem = null;
 
-        final ByteBuffer buf = Charset.forName("UTF-8").encode(inputString);
+        final ByteBuffer buf = StandardCharsets.UTF_8.encode(inputString);
 
         return parse(new ByteBufferInputStream(buf));
     }
