@@ -4,7 +4,7 @@
     <parent>
         <artifactId>izpack</artifactId>
         <groupId>org.codehaus.izpack</groupId>
-        <version>6.0.2-ecervo-SNAPSHOT</version>
+        <version>6.0.2-ecervo</version>
     </parent>
 
     <artifactId>izpack-compiler</artifactId>
